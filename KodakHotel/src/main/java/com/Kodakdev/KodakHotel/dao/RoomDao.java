@@ -13,7 +13,7 @@ public interface RoomDao extends JpaRepository<Room, Long> {
     List<String> findDistinctRoomTypes();
 
     @Query("select r from Room r where r.roomType like %:roomType% and r.id not in (select b.room.id from Booking b where" +
-            "(b.checkInDate <= :checkOutDate) and (b.checkOutDate >= :checkInDatel))")
+            "(b.checkInDate <= :checkOutDate) and (b.checkOutDate >= :checkInDate))")
     List<Room> findAvailableRoomsByDatesAndTypes(LocalDate checkInDate, LocalDate checkOutDate, String roomType);
 
     @Query("select r from Room r where r.id in (select b.room.id from Booking b)")

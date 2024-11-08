@@ -40,7 +40,7 @@ public class Booking {
     private String bookingConfirmationCode;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "USER_ID", referencedColumnName = "id")
+    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
