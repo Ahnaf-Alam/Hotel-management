@@ -1,5 +1,6 @@
 package com.Kodakdev.KodakHotel.security;
 
+import com.Kodakdev.KodakHotel.service.CustomUserDetailsService;
 import com.Kodakdev.KodakHotel.utils.JWTConstants;
 import com.Kodakdev.KodakHotel.utils.JWTUtils;
 import jakarta.servlet.FilterChain;
@@ -24,7 +25,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private JWTUtils jwtUtils;
 
     @Autowired
-    private CachingUserDetailsService cachingUserDetailsService;
+    private CustomUserDetailsService customUserDetailsService;
 
 
     @Override
@@ -48,7 +49,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if(username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
             // fetch user details from username
-            UserDetails userDetails = cachingUserDetailsService.loadUserByUsername(username);
+            UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);
             Boolean validateToken = this.jwtUtils.validateToken(token, userDetails);
 
             if(validateToken) {
