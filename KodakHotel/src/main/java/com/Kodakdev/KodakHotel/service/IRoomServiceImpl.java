@@ -33,7 +33,9 @@ public class IRoomServiceImpl implements IRoomService {
         Response response = new Response();
 
         try {
-            String imageUrl = awsS3Service.saveImageToS3(photo);
+            // we don't have aws access. so we hardCoded the value
+//            String imageUrl = awsS3Service.saveImageToS3(photo);
+            String imageUrl = "https://kodak-hotel-images/" + photo;
             Room room = new Room();
             room.setRoomPhotoUrl(imageUrl);
             room.setRoomType(roomType);
@@ -104,9 +106,11 @@ public class IRoomServiceImpl implements IRoomService {
         try {
             String imageUrl = null;
             if(photo != null && !photo.isEmpty()) {
-                imageUrl = awsS3Service.saveImageToS3(photo);
+//                imageUrl = awsS3Service.saveImageToS3(photo);
             }
-            imageUrl = awsS3Service.saveImageToS3(photo);
+//            imageUrl = awsS3Service.saveImageToS3(photo);
+
+            imageUrl = "https://kodak-hotel-images/" + photo;
 
             Room room = roomDao.findById(roomId).orElseThrow(()-> new BusinessException("Room not found"));
             if(roomType != null) room.setRoomType(roomType);

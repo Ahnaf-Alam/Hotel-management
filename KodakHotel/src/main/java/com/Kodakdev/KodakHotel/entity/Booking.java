@@ -3,7 +3,7 @@ package com.Kodakdev.KodakHotel.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -18,7 +18,7 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Check in date required")
+    @NotNull(message = "Check-in date is required")
     @Column(name = "CHECK_IN_DATE")
     private LocalDate checkInDate;
 
