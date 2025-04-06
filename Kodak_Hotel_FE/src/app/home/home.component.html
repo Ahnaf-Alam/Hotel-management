@@ -1,1 +1,37 @@
-<div></div>
+<div class="home-container">
+    <div class="image-container">
+        <img src="assets/images/hotel.png">
+        <div class="banner-container">
+            <div>Welcome to <span class="highlight">Kodak Hotel</span></div>
+            <p>Step into a haven of comfort and care</p>
+        </div>
+    </div>
+    <div class="room-filter-container">
+        <div class="card-container">
+            <span>Check-in Date</span>
+            <p-calendar 
+                placeholder="DD-MM-YY" 
+                (onSelect)="selectedDate()" 
+                dateFormat="dd-mm-yy"
+                [minDate]="currentDate" 
+                [(ngModel)]="checkIndate" />
+        </div>
+        <div class="card-container">
+            <span>Check-out Date</span>
+            <p-calendar 
+                placeholder="DD-MM-YY" 
+                (onSelect)="selectedDate()" 
+                dateFormat="dd-mm-yy"
+                [minDate]="checkOutStartDate" 
+                [(ngModel)]="checkOutDate" />
+        </div>
+        <div class="card-container">
+            <span>Room Type</span>
+            <p-dropdown 
+                [options]="roomTypes" 
+                [(ngModel)]="selectedRoomType" 
+                placeholder="Select a room type" />
+        </div>
+        <div class="search-btn"><span>Search Room</span></div>
+    </div>
+</div>
