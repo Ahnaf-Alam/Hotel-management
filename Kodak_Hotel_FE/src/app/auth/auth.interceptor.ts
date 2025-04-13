@@ -25,5 +25,7 @@ function getJwtToken(): string | null {
   if(isPlatformBrowser(platFromId)) {
     token = localStorage.getItem("JWT_TOKEN");
   }
+
+  if(token === "undefined") return null;
   return token;
 }

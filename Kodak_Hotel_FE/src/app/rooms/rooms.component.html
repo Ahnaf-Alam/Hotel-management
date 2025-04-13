@@ -1,0 +1,15 @@
+<div class="rooms-container">
+    <div class="filter-container">
+    </div>
+    <div class="room-list">
+        <div class="rooms" *ngFor="let room of rooms">
+            <div class="image-container"><img src="{{room.roomPhotoUrl}}"></div>
+            <div class="description">
+                <span>{{room.roomType}} Room</span>
+                <p>{{room.description}}</p>
+                <p>2 adult and 1 children</p>
+                <span style="color: #065753; font-size: 20px;">{{room.roomPrice}} Tk / per night</span>
+            </div>
+        </div>
+    </div>
+</div>

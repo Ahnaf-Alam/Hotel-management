@@ -1,0 +1,22 @@
+<div class="container">
+    <h1>Welcome To Kodak Hotel</h1>
+    <div class="register-container">
+        <div class="header">Sign Up</div>
+        <div class="form-container">
+            <label for="name">Name</label>
+            <input type="text" name="name" [(ngModel)]="user.name" id="name" placeholder="Enter your name">
+
+            <label for="email">Email</label>
+            <input type="email" name="email" [(ngModel)]="user.email" id="email" placeholder="Enter your email">
+
+            <label for="phoneNumber">Phone number</label>
+            <input type="text" name="phoneNumber" [(ngModel)]="user.phoneNumber" id="phoneNumber" placeholder="Enter your number">
+
+            <label for="password">Password</label>
+            <!-- <input type="password" id="password" placeholder="Enter your password"> -->
+            <p-password [(ngModel)]="user.password" name="password" [toggleMask]="true" [feedback]="false" placeholder="Enter your password"/>
+
+            <div class="sign-up-btn" (click)="onClickRegister()">Register</div>
+        </div>
+    </div>
+</div>

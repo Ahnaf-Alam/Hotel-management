@@ -4,6 +4,11 @@ import { CommonModule } from '@angular/common';
 import { CalendarModule } from 'primeng/calendar';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../services/environment';
+import { response } from 'express';
+import { Observable } from 'rxjs';
+import { RoomService } from '../services/room.service';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +19,9 @@ import { DropdownModule } from 'primeng/dropdown';
 })
 export class HomeComponent {
   authService = inject(AuthService);
+  http = inject(HttpClient);
+  roomService = inject(RoomService);
+
   user?: any;
   checkIndate?: Date;
   checkOutDate?: Date;
@@ -21,20 +29,17 @@ export class HomeComponent {
   checkOutStartDate?: Date;
   roomTypes: string[] = [];
   selectedRoomType?: string;
+  baseUrl = environment.apiUrl;
 
   constructor() {
-      this.authService.getCurrentAuthUser().subscribe(response => {
-        console.log(response);
-        this.user = response;
-      });
-
       this.currentDate = new Date();
+      this.getRoomTypes();
+  }
 
-      // this is testing pupose. We will update when we add apis
-      this.roomTypes.push("Couple");
-      this.roomTypes.push("Single");
-      this.roomTypes.push("Family suit");
-      this.roomTypes.push("President suit");
+  getRoomTypes() {
+    this.roomService.getRoomTypes().subscribe((response: string[]) => {
+      this.roomTypes = response;
+    })
   }
 
   selectedDate() {

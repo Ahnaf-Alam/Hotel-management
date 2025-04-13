@@ -2,7 +2,11 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Inject, inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, isObservable, Observable, tap } from 'rxjs';
+import { environment } from '../services/environment';
+import { Login } from '../models/login';
+import { User } from '../models/user';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,20 +19,27 @@ export class AuthService {
 
   private http = inject(HttpClient);
   private platFromId = inject(PLATFORM_ID);
+  private baseUrl = environment.apiUrl;
 
   constructor() { 
   }
 
   login(user: {
     email: string, password: string
-  }): Observable<any> {
-    return this.http.post('https://api.escuelajs.co/api/v1/auth/login', user) // for testing purpose
-    .pipe(tap((tokens: any)=> this.doLoginUser(user.email, tokens.access_token)));
+  }): Observable<Login> {
+    return this.http.post<Login>(this.baseUrl +'/auth/login', user)
+    .pipe(tap((response: Login)=> 
+      this.doLoginUser(user.email, response)
+    ));
   }
 
-  private doLoginUser(email: string, tokens: any) {
+  register(user: User): Observable<any> {
+    return this.http.post<any>(environment.apiUrl + '/auth/register', user);
+  }
+
+  private doLoginUser(email: string, response: Login) {
     this.loggedUser = email;
-    this.storeJwtToken(tokens);
+    this.storeJwtToken(response.token);
     this.isAuthenticatedSubject.next(true);
   }
 
@@ -39,7 +50,7 @@ export class AuthService {
   }
 
   getCurrentAuthUser() {
-    return this.http.get('https://api.escuelajs.co/api/v1/auth/profile'); // for testing purpose
+    // return this.http.get('https://api.escuelajs.co/api/v1/auth/profile'); // for testing purpose
   }
 
   logout() {
