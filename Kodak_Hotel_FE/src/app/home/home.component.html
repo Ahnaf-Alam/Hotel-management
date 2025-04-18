@@ -12,7 +12,7 @@
             <p-calendar 
                 placeholder="DD-MM-YY" 
                 (onSelect)="selectedDate()" 
-                dateFormat="dd-mm-yy"
+                dateFormat="yyyy-mm-dd"
                 [minDate]="currentDate" 
                 [(ngModel)]="checkIndate" />
         </div>
@@ -21,7 +21,7 @@
             <p-calendar 
                 placeholder="DD-MM-YY" 
                 (onSelect)="selectedDate()" 
-                dateFormat="dd-mm-yy"
+                dateFormat="yyyy-mm-dd"
                 [minDate]="checkOutStartDate" 
                 [(ngModel)]="checkOutDate" />
         </div>
