@@ -18,6 +18,20 @@
 
     .filter-container {
         width: 100%;
+        display: flex;
+        flex-direction: row;
+        margin: 20px;
+        justify-content: center;
+        gap: 40px;
+
+        span {
+            margin-right: 20px;
+            font-size: 20px;
+            font-weight: 600;
+            font-family: sans-serif;
+            color: #065753;;
+        }
+
     }
 
     .room-list {
@@ -29,8 +43,10 @@
         justify-content: center;
 
         .rooms {
-            width: 70vw;
-            height: 50vh;
+            width: 930px;
+            height: 345px;
+            max-width: 930px;
+            max-height: 345px;
             border: 1px solid lightgray;
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -98,6 +114,22 @@
                     cursor: pointer;
                 }
             }
+        }
+    }
+}
+
+:host::ng-deep {
+    .p-calendar {
+        height: 40px;
+        width: 250px;
+        margin-top: 10px;
+    }
+
+    .p-datepicker {
+        min-width: none;
+
+        table td {
+            padding: 0px;
         }
     }
 }

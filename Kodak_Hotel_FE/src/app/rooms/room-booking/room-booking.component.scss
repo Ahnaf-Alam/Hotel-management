@@ -1,0 +1,36 @@
+.booking-container {
+    position: relative;
+    width: 40vw;
+    // max-width: 400px;
+    height: 60vh;
+    padding-top: 20px;
+
+    .header {
+        font-size: 30px;
+        font-weight: 600;
+        font-family: sans-serif;
+        color: #065753;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .body-container {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        .title {
+            font-size: 20px;
+            font-weight: 500;
+            font-family: sans-serif;
+            color: #586464;
+
+            span {
+                color: #065753;
+
+            }
+        }
+
+    }
+}

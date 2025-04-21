@@ -1,6 +1,33 @@
 <div class="rooms-container">
     <div class="header"><p>Find your best room</p></div>
     <div class="filter-container">
+        <div class="card-container">
+            <span>Check-in Date</span>
+            <p-calendar 
+                placeholder="YY-MM-DD" 
+                (onSelect)="selectedDate()" 
+                dateFormat="yy-mm-dd"
+                dataType="string"
+                [minDate]="currentDate" 
+                [(ngModel)]="checkInDate" />
+        </div>
+        <div class="card-container">
+            <span>Check-out Date</span>
+            <p-calendar 
+                placeholder="YY-MM-DD" 
+                (onSelect)="selectedDate()" 
+                dateFormat="yy-mm-dd"
+                dataType="string"
+                [minDate]="checkOutStartDate" 
+                [(ngModel)]="checkOutDate" />
+        </div>
+        <!-- <div class="card-container">
+            <span>Room Type</span>
+            <p-dropdown 
+                [options]="roomTypes" 
+                [(ngModel)]="selectedRoomType" 
+                placeholder="Select a room type" />
+        </div> -->
     </div>
     <div class="room-list">
         <div class="rooms" *ngFor="let room of rooms">
@@ -11,7 +38,7 @@
                 <p>2 adult and 1 children</p>
                 <span style="color: #065753; font-size: 20px;">{{room.roomPrice}} Tk / per night</span>
                 <div class="btn-container">
-                    <div class="book-btn">Book Room</div>
+                    <div class="book-btn" (click)="onClickBooking(room)">Book Room</div>
                     <div class="delete-btn">Delete Room</div>
                 </div>
             </div>

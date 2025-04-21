@@ -1,0 +1,14 @@
+<div class="booking-container"> 
+    <div class="header">
+        <span>Book your room</span>
+        <div class="icon" (click)="onClickClose()"><i class="pi pi-times" style="font-size: 1.5rem; line-height: 25px; padding-right: 5px; cursor: pointer;"></i></div>
+    </div>
+    <div class="body-container">
+        <span>Here is your room details</span>
+        <div class="title">Room Type: <span>{{room.roomType}}</span></div>
+        <div class="title">Check In Date: <span>{{checkInDate}}</span></div>
+        <div class="title">Check Out Date: <span>{{checkOutDate}}</span></div>
+        <div class="title">Total Days: <span>{{totalDay}}</span></div>
+        <div class="title">Total Price: <span>{{totalPrice}}</span></div>
+    </div>
+</div>
