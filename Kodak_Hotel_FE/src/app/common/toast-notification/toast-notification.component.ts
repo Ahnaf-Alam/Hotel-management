@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 
 @Component({
@@ -6,8 +7,7 @@ import { ToastModule } from 'primeng/toast';
   standalone: true,
   imports: [ToastModule],
   templateUrl: './toast-notification.component.html',
-  styleUrl: './toast-notification.component.scss'
+  styleUrl: './toast-notification.component.scss',
 })
 export class ToastNotificationComponent {
-    
 }

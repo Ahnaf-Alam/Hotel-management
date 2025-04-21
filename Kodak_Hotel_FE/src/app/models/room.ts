@@ -1,7 +1,7 @@
 import { Bookings } from "./bookings";
 
 export interface Room {
-    roomId: string,
+    id: string,
     roomType: string,
     roomPhotoUrl: string,
     description: string,

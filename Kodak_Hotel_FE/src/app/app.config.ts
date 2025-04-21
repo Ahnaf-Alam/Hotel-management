@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideLoadingBarInterceptor } from '@ngx-loading-bar/http-client';
 import { provideLoadingBar } from '@ngx-loading-bar/core';
 import { provideLoadingBarRouter } from '@ngx-loading-bar/router';
+import { MessageService } from 'primeng/api';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,6 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([authInterceptor])),
     importProvidersFrom(BrowserAnimationsModule),
     provideLoadingBarInterceptor(),
-    provideLoadingBarRouter()
+    provideLoadingBarRouter(),
+    MessageService
   ]
 };

@@ -10,21 +10,21 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { Room } from '../models/room';
 import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-rooms',
   standalone: true,
-  imports: [CommonModule, FormsModule, CalendarModule, DropdownModule],
+  imports: [CommonModule, FormsModule, CalendarModule, DropdownModule, ToastModule],
   templateUrl: './rooms.component.html',
   styleUrl: './rooms.component.scss',
-  providers: [DialogService, MessageService]
+  providers: [DialogService]
 })
 export class RoomsComponent implements OnInit {
   http = inject(HttpClient);
   roomSerivce = inject(RoomService);
   ref: DynamicDialogRef | undefined;
   dialogService = inject(DialogService);
-  messageService = inject(MessageService)
 
   rooms: any[] = [];
   checkInDate?: string;
@@ -33,6 +33,7 @@ export class RoomsComponent implements OnInit {
   currentDate?: Date;
   roomTypes: any[] = [];
   selectedRoomType: any;
+  constructor(private messageService: MessageService) {}
 
   ngOnInit(): void {
     this.currentDate = new Date();
@@ -51,7 +52,13 @@ export class RoomsComponent implements OnInit {
 
   onClickBooking(selectedRoom: Room) {
     if(this.checkInDate === undefined || this.checkOutDate === undefined) {
-      this.messageService.add({summary: 'Please select checkIn/Checkout date', detail: 'Message content', key: 'toast'});
+      this.messageService.add({
+        key: 'toast',
+        severity: 'error',
+        summary: 'Input Error',
+        detail: 'Check In/Out Date Required',
+      });
+      return;
     }
     this.ref = this.dialogService.open(RoomBookingComponent, this.dialogConfig(selectedRoom));
   }

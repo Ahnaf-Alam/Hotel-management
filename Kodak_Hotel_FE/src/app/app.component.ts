@@ -6,11 +6,12 @@ import { AuthService } from './auth/auth.service';
 import { filter } from 'rxjs';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarModule, NgxLoadingBar } from '@ngx-loading-bar/core';
+import { ToastNotificationComponent } from './common/toast-notification/toast-notification.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, GenericHeaderComponent, RouterModule, NgxLoadingBar],
+  imports: [CommonModule, RouterOutlet, GenericHeaderComponent, RouterModule, NgxLoadingBar, ToastNotificationComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

@@ -1,6 +1,9 @@
 import { Component, inject, Input } from '@angular/core';
 import { DialogService, DynamicDialogConfig, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Room } from '../../models/room';
+import { BookingService } from '../../services/booking.service';
+import { UserService } from '../../services/user.service';
+import { response } from 'express';
 
 @Component({
   selector: 'app-room-booking',
@@ -18,6 +21,10 @@ export class RoomBookingComponent {
   room!: Room
   totalDay!: number;
   totalPrice!: number;
+  user: any;
+
+  bookingService = inject(BookingService);
+  userService = inject(UserService);
 
   constructor(
     private ref: DynamicDialogRef,
@@ -30,10 +37,17 @@ export class RoomBookingComponent {
 
     this.calculateTotalDay();
     this.calculateTotalPrice();
+    this.getCurrentLoggedInUser();
   }
 
   onClickClose() {
     this.ref.close();
+  }
+
+  onClickConfirm() {
+    this.bookingService.addBooking(this.room.id, this.user.id, this.getBookingPayload()).subscribe(response => {
+      console.log(response);
+    })
   }
 
   private calculateTotalDay() {
@@ -44,6 +58,22 @@ export class RoomBookingComponent {
 
   private calculateTotalPrice() {
     this.totalPrice = this.totalDay * this.room?.roomPrice;
+  }
+
+  private getBookingPayload() {
+    return {
+      checkInDate: this.checkInDate,
+      checkOutDate: this.checkOutDate,
+      numOfAdults: 2,
+      numOfChildren: 1,
+    }
+  }
+
+  // Must need to refactor. Breaking Single Responsibility principle 
+  private getCurrentLoggedInUser() {
+    this.userService.getLoggedInUser().subscribe(response => {
+      this.user = response.userDTO;
+    })
   }
 
 }

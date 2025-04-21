@@ -5,7 +5,8 @@
             <span>Check-in Date</span>
             <p-calendar 
                 placeholder="YY-MM-DD" 
-                (onSelect)="selectedDate()" 
+                (onSelect)="selectedDate()"
+                readonlyInput="true"
                 dateFormat="yy-mm-dd"
                 dataType="string"
                 [minDate]="currentDate" 
@@ -18,6 +19,7 @@
                 (onSelect)="selectedDate()" 
                 dateFormat="yy-mm-dd"
                 dataType="string"
+                readonlyInput="true"
                 [minDate]="checkOutStartDate" 
                 [(ngModel)]="checkOutDate" />
         </div>
